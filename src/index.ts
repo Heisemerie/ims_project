@@ -1,9 +1,11 @@
-const express = require('express')
-const { engine } = require("express-handlebars")
-
+import express from "express"
+import {engine} from "express-handlebars"
+import { connect } from "./database/sql";
+import "dotenv/config"
+// console.log(process.env)
 
 const server = express();
-
+connect()
 server.set('view engine', 'handlebars');
 
 server.engine('handlebars', engine({
