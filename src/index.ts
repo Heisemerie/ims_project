@@ -21,11 +21,23 @@ server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 
 server.get("/", function (req, res) {
-  res.render("main", { layout: "index" });
+  res.render("caller", { layout: "index" });
 });
 
-server.get("/admin", (req, res) => {
-  res.render("admin-index", { layout: "index" });
+server.get("/admin/incoming", (req, res) => {
+  res.render("incoming", { layout: "index" });
+});
+
+server.get("/admin/overview", (req, res) => {
+  res.render("overview", { layout: "index" });
+});
+
+server.get("/admin/approved", (req, res) => {
+  res.render("approved", { layout: "index" });
+});
+
+server.get("/admin/history", (req, res) => {
+  res.render("history", { layout: "index" });
 });
 
 // This route handles a POST request to /request

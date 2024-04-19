@@ -47,7 +47,7 @@
   background-color: rgba(0, 0, 0, 0.7);
 }
 
-.dialog {
+.success {
   background-color: #27ae60;
   position: relative;
   z-index: 1;
@@ -79,4 +79,91 @@
 
 .error-dialog-hidden {
   display: none;
+}
+
+/* main style */
+#inap{
+  margin: 1em;
+}
+/* header style */
+header{
+  padding: 0em;
+}
+
+/* navigation bar style */
+ul {
+  list-style-type: none;
+  margin: 1em 0em;
+  padding: 0em;
+  overflow: hidden;
+  border: 1px solid #e7e7e7;
+  background-color: #f3f3f3;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: #666;
+  text-align: center;
+  padding: 0.875em 1em;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #ddd;
+}
+
+li a.active {
+  color: white;
+  background-color: #b50018;
+}
+
+/* table style */
+table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0em;
+}
+
+/* table history style  */
+.history td, .history th, .approved td, .approved th {
+  border: 1px solid #ddd;
+  padding: 0.5em;
+  width: 16.7%;
+}
+
+.incoming td, .incoming th {
+  border: 1px solid #ddd;
+  padding: 0.5em;
+  width: 20%;
+}
+
+table tr:nth-child(even){background-color: #f2f2f2;}
+
+table tr:hover {background-color: #ddd;}
+
+table th {
+  padding-top: 0.75em;
+  padding-bottom: 0.75em;
+  text-align: left;
+  background-color: #b50018;
+  color: white;
+}
+
+/* button style */
+.assign{
+  background-color: red;
+  color: white;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  border-width: 0em;
+  width: 100%;
+}
+.assign a{
+  text-decoration: none;
+  color: white;
 }

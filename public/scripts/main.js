@@ -1,5 +1,5 @@
 const button = document.querySelector(".request");
-const dialog = document.querySelector(".dialog");
+const dialog = document.querySelector(".success");
 const errorDialog = document.querySelector(".error-dialog");
 
 button.addEventListener("click", () => {
