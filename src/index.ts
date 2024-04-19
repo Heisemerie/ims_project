@@ -2,10 +2,9 @@ import express from "express"
 import {engine} from "express-handlebars"
 import { connect } from "./database/sql";
 import "dotenv/config"
-// console.log(process.env)
 
 const server = express();
-connect()
+// connect()
 server.set('view engine', 'handlebars');
 
 server.engine('handlebars', engine({
@@ -20,6 +19,6 @@ server.get('/',function(req, res){
 })
 
 
-server.listen(8080,function(){
+server.listen(8082,function(){
     console.log("server running")
 })
