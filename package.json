@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon src/index.ts"
+    "start": "nodemon src/index.ts",
+    "start-db": "chmod +x script.sh && ./script.sh"
   },
   "author": "Mbah Chiemerie Ejike",
   "license": "MIT",
@@ -22,6 +23,7 @@
     "@types/express": "^4.17.21",
     "@types/node": "^20.12.7",
     "nodemon": "^3.1.0",
+    "prettier": "^3.2.5",
     "typescript": "^5.4.5"
   }
 }
