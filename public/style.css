@@ -2,29 +2,39 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: montserrat, roboto, noto, sans-serif;
 }
 
-.home {
-  background-image: url("./images/fire-service.jpeg");
+body{
+  background-image: url("./images/jonas-jaeken-keFO46nM294-unsplash.jpg");
   height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  opacity: 0.9;
 }
 
+.callerlogo{
+  margin: 0.5em;
+}
 .button-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
 }
+.note{
+  color: white;
+  /* background-color: blue; */
+  font-size: 4em;
+}
 .request {
-  padding: 12px;
+  padding: 0.75em;
   border: none;
   outline: none;
-  border-radius: 8px;
-  font-family: Georgia, "Times New Roman", Times, serif;
-  font-size: 14;
+  border-radius: 0.5em;
+  /* font-family: Georgia, "Times New Roman", Times, serif; */
+  font-size: 1.3em;
   font-weight: 600;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   background: #b50018;
@@ -38,12 +48,13 @@
 .request:hover {
   opacity: 0.9;
 }
+
 .blur {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 1.5vh;
   background-color: rgba(0, 0, 0, 0.7);
 }
 
@@ -82,12 +93,16 @@
 }
 
 /* main style */
-#inap{
+#inap {
   margin: 1em;
 }
+
 /* header style */
-header{
+head {
   padding: 0em;
+}
+.logo{
+  color: gold;
 }
 
 /* navigation bar style */
@@ -106,7 +121,7 @@ li {
 
 li a {
   display: block;
-  color: #666;
+  color: black;
   text-align: center;
   padding: 0.875em 1em;
   text-decoration: none;
@@ -127,10 +142,14 @@ table {
   border-collapse: collapse;
   width: 100%;
   margin: 0em;
+  background-color: white;
 }
 
 /* table history style  */
-.history td, .history th, .approved td, .approved th {
+.history td,
+.history th,
+.approved td,
+.approved th {
   border: 1px solid #ddd;
   padding: 0.5em;
   width: 16.7%;
@@ -142,9 +161,13 @@ table {
   width: 20%;
 }
 
-table tr:nth-child(even){background-color: #f2f2f2;}
+table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
 
-table tr:hover {background-color: #ddd;}
+table tr:hover {
+  background-color: #ddd;
+}
 
 table th {
   padding-top: 0.75em;
@@ -155,15 +178,59 @@ table th {
 }
 
 /* button style */
-.assign{
-  background-color: red;
+.assign {
+  background-color: rgb(122, 121, 121);
   color: white;
-  padding: 0.5em;
+  padding: 0.6em;
   border-radius: 0.5em;
   border-width: 0em;
   width: 100%;
 }
-.assign a{
+
+.assign a {
   text-decoration: none;
   color: white;
+}
+
+/* overview style  */
+.metrics {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.metrics > div {
+  background-color: white;
+  margin: 1em 0em 1em 2.7em;
+  border-radius: 0.3em;
+  font-size: 1em;
+  width: 45%;
+}
+
+header{
+  background-color: #b50018;
+  padding: 0.5em;
+  height: 5vh;
+  border-radius: 0.3em 0.3em 0em 0em;
+  color: white;
+}
+
+.cards div{
+  height: 12vh;
+  padding: 0.5em;
+}
+.top{
+  height: 25vh;;
+}
+.middle{
+  border-top: 1px solid #e7e7e7;
+  border-bottom: 1px solid #e7e7e7;
+}
+div h2, div h1{
+  color: rgb(2, 2, 116);
+  font-size: 2.5em;
+  font-weight: lighter;
+}
+
+div h1{
+  font-size: 4em;
 }
