@@ -1,9 +1,13 @@
-import { BaseEntity } from "../commons/base.entity";
-import { Entity, Column, OneToMany } from "typeorm";
-import { DriverEntity } from "./driver";
+import { Entity, Column, OneToMany, Generated, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, PrimaryGeneratedColumn } from "typeorm";
+import { RTeamEntity } from "./rteam";
+import { RequestEntity } from "./request";
 
 @Entity({ name: "fstations" })
-export class FStationEntity extends BaseEntity<FStationEntity> {
+export class FStationEntity {
+  // entity attributes
+  @PrimaryGeneratedColumn()
+  id!: number;
+
   @Column({ type: "varchar" })
   name!: string;
 
@@ -13,6 +17,16 @@ export class FStationEntity extends BaseEntity<FStationEntity> {
   @Column({ type: "varchar" })
   hotline!: string;
 
-  @OneToMany(() => DriverEntity, (drivers) => drivers.station)
-  drivers!: DriverEntity[];
+  @CreateDateColumn({
+    type: "timestamp",
+    default: () => "CURRENT_TIMESTAMP(6)",
+    nullable: false,
+  })
+  created_at!: Date;
+
+  @OneToMany(() => RTeamEntity, (rteams) => rteams.station)
+  rteams!: RTeamEntity[];
+
+  @OneToMany(() => RequestEntity, (request) => request.station)
+  requests!: RequestEntity[];
 }

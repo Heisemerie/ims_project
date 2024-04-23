@@ -1,7 +1,11 @@
-import { BaseEntity } from "../commons/base.entity";
-import { Entity, Column } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, Generated, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, JoinColumn, ManyToOne } from "typeorm";
+import { FStationEntity } from "./fstation";
+
 @Entity({ name: "requests" })
-export class RequestEntity extends BaseEntity<RequestEntity> {
+export class RequestEntity {
+  @PrimaryGeneratedColumn()
+  id!: number;
+
   @Column({ type: "float" })
   longitude!: number;
 
@@ -13,4 +17,24 @@ export class RequestEntity extends BaseEntity<RequestEntity> {
 
   @Column({ type: "bool", default: false })
   put_out!: boolean;
+
+  @CreateDateColumn({
+    type: "timestamp",
+    default: () => "CURRENT_TIMESTAMP(6)",
+    nullable: false,
+  })
+  created_at!: Date;
+
+  @Column({
+    type: "timestamp",
+    nullable: true,
+  })
+  time_arrived!: Date;
+
+  @ManyToOne(() => FStationEntity, (station) => station.requests, {
+    onDelete: "CASCADE",
+    cascade: ["remove"],
+  })
+  @JoinColumn({ name: "station_id" })
+  station!: FStationEntity;
 }

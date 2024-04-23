@@ -2,12 +2,15 @@ const button = document.querySelector(".request");
 const dialog = document.querySelector(".success");
 const errorDialog = document.querySelector(".error-dialog");
 
+//add event listener to emrgency button
 button.addEventListener("click", () => {
   getLocation();
 });
 
+//get users location from geolocation api
 const getLocation = () => {
   const geoLocation = navigator.geolocation;
+
 
   geoLocation.getCurrentPosition(
     (position) => {
@@ -28,6 +31,7 @@ const getLocation = () => {
   );
 };
 
+//creates a request instance and displays success message
 const requestFireServiceTruck = async (coordinates) => {
   try {
     const response = await fetch("/request", {

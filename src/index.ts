@@ -1,12 +1,35 @@
 import express from "express";
 import { engine } from "express-handlebars";
-import { connect } from "./database/sql";
 import "dotenv/config";
 import path from "path";
-import { RequestRepository } from "./repositories/request.repository";
+import { ormConfig } from "./config/orm.config";
+import { DataSource } from "typeorm";
+import { RequestEntity } from "./entities/request";
 
+//creates a new datasource instance that calls ormconfig
+const AppDataSource = new DataSource(ormConfig);
+
+// gives us access to create new request innstances
+const RequestRepository = AppDataSource.getRepository(RequestEntity).extend({});
+
+// create the connect function
+const connect = () => {
+  AppDataSource.initialize()
+    .then(() => {
+      console.info("[Fire Service SQL DB] --> connected to DB");
+    })
+    .catch((error: any) => {
+      console.log(error);
+
+      console.error(`[Fire Service SQL DB] --> [DB Connection Error] --> ${error.message}`);
+    });
+};
+
+//create a server instance and connect to it
 const server = express();
 connect();
+
+// sets view engines used to render front end
 server.set("view engine", "handlebars");
 
 server.engine(
@@ -16,10 +39,12 @@ server.engine(
   }),
 );
 
+// middleware
 server.use(express.static(path.join(__dirname, "..", "public")));
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 
+//routes
 server.get("/", function (req, res) {
   res.render("caller", { layout: "index" });
 });
