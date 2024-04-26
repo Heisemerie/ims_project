@@ -4,38 +4,26 @@
     </head>
     {{> nav }}
     <table class="approved">
-        <tr>
+        <thead>
             <th>Request ID</th>
             <th>Time Created</th>
-            <th>Time Put Out</th>
+            {{!-- <th> Put Out</th> --}}
             <th>Longitude</th>
             <th>Latitude</th>
             <th>Response Team</th>
-        </tr>
-        <tr>
-            <td>Alfreds Futterkiste</td>
-            <td>Maria Anders</td>
-            <td>Germany</td>
-            <td>Germany</td>
-            <td>Germany</td>
-            <td>Response Team 2</td>
-        </tr>
-        <tr>
-            <td>Berglunds snabbköp</td>
-            <td>Christina Berglund</td>
-            <td>Sweden</td>
-            <td>Sweden</td>
-            <td>Sweden</td>
-            <td>Response Team 2</td>
-        </tr>
-        <tr>
-            <td>Centro comercial Moctezuma</td>
-            <td>Francisco Chang</td>
-            <td>Mexico</td>
-            <td>Mexico</td>
-            <td>Mexico</td>
-            <td>Response Team 2</td>
-        </tr>
+        </thead>
+        <tbody>
+            {{#each data.requests}}
+            <tr>
+                <td>{{this.id}}</td>
+                <td>{{this.created_at}}</td>
+                {{!-- <td>{{this.put_out}}</td> --}}
+                <td>{{this.longitude}}</td>
+                <td>{{this.latitude}}</td>
+                <td>Response Team X</td>
+            </tr>
+            {{/each}}
+        </tbody>
         
     </table>
 </main>

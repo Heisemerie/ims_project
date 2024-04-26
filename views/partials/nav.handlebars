@@ -4,5 +4,14 @@
         <li><a class="incoming" href="/admin/incoming">Incoming Emergencies</a></li>
         <li><a class="approved" href="/admin/approved">Approved Emergencies</a></li>
         <li><a class="history" href="/admin/history">Fire History</a></li>
+        <li class="dropdown">
+            <a class="dropbtn">New Response Team</a>
+            <div class="dropdown-content">
+                <form action="/response-team" method="post">
+                    <input type="text" name="name" id="name" required="true">
+                    <button type="submit">Create Team</button>
+                </form>
+            </div>
+        </li>
     </ul>
 </nav>

@@ -6,10 +6,7 @@ export class RTeamEntity {
   @Column({ type: "varchar" })
   name!: string;
 
-  @Column({ type: "varchar" })
-  phone!: string;
-
-  @Column({ type: "bool", default: true })
+  @Column({ type: "bool", default: false })
   status!: boolean;
   
   @PrimaryGeneratedColumn()

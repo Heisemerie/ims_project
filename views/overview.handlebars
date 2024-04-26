@@ -1,4 +1,5 @@
 <main id="inap">
+
     <head>
         <h1 class="logo">FireGuard</h1>
     </head>
@@ -8,14 +9,14 @@
             <header>Incoming Emergencies</header>
             <div>
                 <h6>TODAY</h6>
-                <h1>23</h1>
+                <h1>{{ data.incomingRequestCount }}</h1>
             </div>
         </div>
         <div class="cards top">
             <header>Approved Emergencies</header>
             <div>
                 <h6>TODAY</h6>
-                <h1>17</h1>
+                <h1>{{data.approvedRequestCount}}</h1>
             </div>
         </div>
 
@@ -38,15 +39,15 @@
             <header>Response Teams</header>
             <div>
                 <h6>TOTAL</h6>
-                <h2>25</h2>
+                <h2>{{ data.responseTeamCount }}</h2>
             </div>
             <div class="middle">
                 <h6>AVAILABLE</h6>
-                <h2>8</h2>
+                <h2>{{ data.availableResponseTeamCount }}</h2>
             </div>
             <div>
                 <h6>DEPLOYED</h6>
-                <h2>17</h2>
+                <h2>{{data.approvedRequestCount}}</h2>
             </div>
         </div>
     </div>
