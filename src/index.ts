@@ -33,7 +33,7 @@ const connect = () => {
 const server = express();
 connect();
 
-// sets view engines used to render front end
+// sets view engines used to render front-end
 server.set("view engine", "handlebars");
 server.engine(
   "handlebars",
@@ -91,6 +91,9 @@ server.get("/admin/history", async (req, res) => {
   })
   res.render("history", { layout: "index", data: { requests } });
 });
+
+//render mapview page
+server.get("/admin/mapview", async (req, res) => {res.render("mapview",{ layout: "index"})})
 
 // This route handles a POST request to /request
 // The callback function creates a new request in the database

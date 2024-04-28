@@ -1,10 +1,11 @@
 <main id="inap">
+
     <head>
         <h1 class="logo">FireGuard</h1>
     </head>
     {{> nav }}
     <table class="incoming">
-                <thead>
+        <thead>
             <th>Request ID</th>
             <th>Time Created</th>
             <th>Longitude</th>
@@ -18,10 +19,17 @@
                 <td>{{this.created_at}}</td>
                 <td>{{this.longitude}}</td>
                 <td>{{this.latitude}}</td>
-                 <td><button class="assign"><a href="#">Assign</a></button></td>
+                <td class="dropdown">
+                    <a class="dropbtn"><button class="assign">Assign</button></a>
+                    <div class="dropdown-content">
+                        <a href="#">Link 1</a>
+                        <a href="#">Link 2</a>
+                        <a href="#">Link 3</a>
+                    </div>
+                </td>
             </tr>
             {{/each}}
         </tbody>
-       
+
     </table>
 </main>
