@@ -113,6 +113,11 @@ server.get("/admin/mapview", async (req, res) => {
   res.render("mapview", { layout: "index" });
 });
 
+//render rteam page
+server.get("/rteam", async (req, res)=>{
+  res.render("rteam", {layout: "index"});
+})
+
 //render requestdetails page
 server.get("/admin/incoming/:id", async (req, res) => {
   const requestId = req.params.id;
@@ -158,7 +163,7 @@ server.post("/request", async (req, res) => {
 
 //create new response team
 server.post("/response-team", async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const { name } = req.body;
   const fstation = await FStationRepository.findOneBy({ id: 1 });
   const entity = RTeamRepository.create({ name, station: fstation! });

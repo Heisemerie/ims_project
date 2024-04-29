@@ -1,0 +1,23 @@
+<main id="inap">
+  <head>
+    <h1 class="logo">FireGuard</h1>
+  </head>
+  <div class="rteam">
+    <div>
+      <h2 class="details">Response Team X</h2>
+      <ol class="details">
+        <li><span>ID: </span><span>{{data.requestDetails.id}}</span></li>
+        <li><span>Longitude: </span><span>{{data.requestDetails.longitude}}</span></li>
+        <li><span>Latitude: </span><span>{{data.requestDetails.latitude}}</span></li>
+        <li><span>Time: </span><span>1{{data.requestDetails.created_at}}</span></li>
+      </ol>
+    </div>
+    <form action="" method="post">
+      <button class="arr">Arrived</button>
+      <button class="arr">Put Out</button>
+    </form>
+    <div class="rmap">
+        <img src="/images/map.png" alt="">
+    </div>
+  </div>
+</main>

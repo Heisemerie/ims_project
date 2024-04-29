@@ -325,3 +325,20 @@ select {
   border-radius: 0.25em;
   background-color: #f1f1f1;
 }
+
+/* rteam style  */
+.rteam{
+  width: 55%;
+  margin: auto;
+  border-radius: 0.75em;
+  background-color: white;
+  padding: 2em;
+}
+
+.arr{
+  margin-bottom: 1em;
+}
+
+.rmap{
+  height: 70vh;
+}
