@@ -42,6 +42,7 @@ export class RequestEntity {
   })
   time_arrived!: Date;
 
+  // relationships
   @ManyToOne(() => FStationEntity, (station) => station.requests, {
     onDelete: "CASCADE",
     cascade: ["remove"],
