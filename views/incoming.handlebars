@@ -1,5 +1,4 @@
 <main id="inap">
-
     <head>
         <h1 class="logo">FireGuard</h1>
     </head>
@@ -19,17 +18,11 @@
                 <td>{{this.created_at}}</td>
                 <td>{{this.longitude}}</td>
                 <td>{{this.latitude}}</td>
-                <td class="dropdown">
-                    <a class="dropbtn"><button class="assign">Assign</button></a>
-                    <div class="dropdown-content">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
-                    </div>
+                <td>
+                    <a class="dropbtn" href="/admin/incoming/{{this.id}}"><button class="assign">Assign</button></a>
                 </td>
             </tr>
             {{/each}}
         </tbody>
-
     </table>
 </main>

@@ -11,7 +11,7 @@ import { FStationEntity } from "./entities/fstation";
 //creates a new datasource instance that calls ormconfig
 const AppDataSource = new DataSource(ormConfig);
 
-// gives us access to create new request innstances
+// gives us access to create new entity recoreds (rows) and also allows to query in JS
 const RequestRepository = AppDataSource.getRepository(RequestEntity).extend({});
 const RTeamRepository = AppDataSource.getRepository(RTeamEntity).extend({});
 const FStationRepository = AppDataSource.getRepository(FStationEntity).extend({});
@@ -69,7 +69,10 @@ server.get("/admin/incoming", async (req, res) => {
       created_at: "DESC"
     }, where: { approved: false }
   })
-  res.render("incoming", { layout: "index", data: { requests } });
+
+  const rteam = await RTeamRepository.find({where: {status: false}})
+  console.log(rteam)
+  res.render("incoming", { layout: "index", data: { requests, rteam } });
 });
 
 // render approved page 
@@ -94,6 +97,12 @@ server.get("/admin/history", async (req, res) => {
 
 //render mapview page
 server.get("/admin/mapview", async (req, res) => {res.render("mapview",{ layout: "index"})})
+
+//render requestdetails page
+server.get("/admin/incoming/:id", async (req, res) => {
+  
+  res.render("requestdetails",{ layout: "index"})
+})
 
 // This route handles a POST request to /request
 // The callback function creates a new request in the database
