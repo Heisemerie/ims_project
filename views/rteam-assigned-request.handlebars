@@ -1,0 +1,35 @@
+<main id="inap">
+  <head>
+    <h1 class="logo">FireGuard</h1>
+  </head>
+  <div class="rteam">
+    {{#if data.rteamDetails.requests}}
+      <div>
+        <h2 class="details">{{data.rteamDetails.name}}</h2>
+        {{#each data.rteamDetails.requests}}
+          <ol class="details">
+            <li><span>ID: </span><span>{{this.id}}</span></li>
+            <li><span>Longitude: </span><span>{{this.longitude}}</span></li>
+            <li><span>Latitude: </span><span>{{this.latitude}}</span></li>
+            <li><span>Time: </span><span>{{this.created_at}}</span></li>
+          </ol>
+          <form action="/update-request" method="post">
+            <input type="hidden" name="request" value="{{this.id}}" />
+            {{#unless this.time_arrived}}
+              <button class="arr" type="submit" name="time_arrived" value="true">Arrived</button>
+            {{/unless}}
+
+            {{#unless this.put_out}}
+              <button class="arr" type="submit" name="put_out" value="true">Put out</button>
+            {{/unless}}
+          </form>
+        {{/each}}
+      </div>
+      <div class="rmap">
+        <img src="/images/map.png" alt="" />
+      </div>
+    {{else}}
+      <h3>You do not have an emergency to attend to</h3>
+    {{/if}}
+  </div>
+</main>
