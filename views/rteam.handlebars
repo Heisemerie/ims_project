@@ -2,22 +2,15 @@
   <head>
     <h1 class="logo">FireGuard</h1>
   </head>
-  <div class="rteam">
-    <div>
-      <h2 class="details">Response Team X</h2>
-      <ol class="details">
-        <li><span>ID: </span><span>{{data.requestDetails.id}}</span></li>
-        <li><span>Longitude: </span><span>{{data.requestDetails.longitude}}</span></li>
-        <li><span>Latitude: </span><span>{{data.requestDetails.latitude}}</span></li>
-        <li><span>Time: </span><span>1{{data.requestDetails.created_at}}</span></li>
-      </ol>
-    </div>
-    <form action="" method="post">
-      <button class="arr">Arrived</button>
-      <button class="arr">Put Out</button>
+  <div class="requestform">
+    <form action="/rteam" method="post">
+      <label for="rteam" class="select">Which Team are you?</label>
+      <select name="rteam" id="rteam" class="select">
+        {{#each data.availableResponseTeam}}
+          <option value="{{this.id}}">{{this.name}}</option>
+        {{/each}}
+      </select>
+      <button class="select" type="submit">View Assigned Emergency</button>
     </form>
-    <div class="rmap">
-        <img src="/images/map.png" alt="">
-    </div>
   </div>
 </main>

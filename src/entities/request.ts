@@ -40,7 +40,7 @@ export class RequestEntity {
     type: "timestamp",
     nullable: true,
   })
-  time_arrived!: Date;
+  time_arrived!: Date | null;
 
   // relationships
   @ManyToOne(() => FStationEntity, (station) => station.requests, {
@@ -55,5 +55,5 @@ export class RequestEntity {
     cascade: ["remove"],
   })
   @JoinColumn({ name: "rteam_id" })
-  rteam!: RTeamEntity;
+  rteam!: RTeamEntity | null;
 }
