@@ -1,5 +1,16 @@
-import { Entity, Column, PrimaryGeneratedColumn, Generated, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, JoinColumn, ManyToOne } from "typeorm";
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  Generated,
+  CreateDateColumn,
+  UpdateDateColumn,
+  DeleteDateColumn,
+  JoinColumn,
+  ManyToOne,
+} from "typeorm";
 import { FStationEntity } from "./fstation";
+import { RTeamEntity } from "./rteam";
 
 @Entity({ name: "requests" })
 export class RequestEntity {
@@ -37,4 +48,11 @@ export class RequestEntity {
   })
   @JoinColumn({ name: "station_id" })
   station!: FStationEntity;
+
+  @ManyToOne(() => RTeamEntity, (rteam) => rteam.requests, {
+    onDelete: "CASCADE",
+    cascade: ["remove"],
+  })
+  @JoinColumn({ name: "rteam_id" })
+  rteam!: RTeamEntity;
 }

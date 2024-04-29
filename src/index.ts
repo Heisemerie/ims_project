@@ -55,54 +55,93 @@ server.get("/", function (req, res) {
 
 // render overview page
 server.get("/admin/overview", async (req, res) => {
-  const incomingRequestCount = await RequestRepository.count({ where: { approved: false } })
-  const approvedRequestCount = await RequestRepository.count({ where: { approved: true } })
-  const responseTeamCount = await RTeamRepository.count()
-  const availableResponseTeamCount = await RTeamRepository.count({ where: { status: false } })
-  res.render("overview", { layout: "index", data: { incomingRequestCount, approvedRequestCount, responseTeamCount, availableResponseTeamCount } });
+  const incomingRequestCount = await RequestRepository.count({ where: { approved: false } });
+  const approvedRequestCount = await RequestRepository.count({ where: { approved: true } });
+  const responseTeamCount = await RTeamRepository.count();
+  const availableResponseTeamCount = await RTeamRepository.count({ where: { status: false } });
+  res.render("overview", {
+    layout: "index",
+    data: {
+      incomingRequestCount,
+      approvedRequestCount,
+      responseTeamCount,
+      availableResponseTeamCount,
+    },
+  });
 });
 
-// render incoming page 
+// render incoming page
 server.get("/admin/incoming", async (req, res) => {
   const requests = await RequestRepository.find({
     order: {
-      created_at: "DESC"
-    }, where: { approved: false }
-  })
+      created_at: "DESC",
+    },
+    where: { approved: false },
+  });
 
-  const rteam = await RTeamRepository.find({where: {status: false}})
-  console.log(rteam)
+  const rteam = await RTeamRepository.find({ where: { status: false } });
   res.render("incoming", { layout: "index", data: { requests, rteam } });
 });
 
-// render approved page 
+// render approved page
 server.get("/admin/approved", async (req, res) => {
   const requests = await RequestRepository.find({
     order: {
-      created_at: "DESC"
-    }, where: { approved: true }
-  })
+      created_at: "DESC",
+    },
+    relations: {
+      rteam: true,
+    },
+    where: { approved: true },
+  });
+
   res.render("approved", { layout: "index", data: { requests } });
 });
 
-// render history page 
+// render history page
 server.get("/admin/history", async (req, res) => {
   const requests = await RequestRepository.find({
     order: {
-      created_at: "DESC"
-    }
-  })
+      created_at: "DESC",
+    },
+  });
   res.render("history", { layout: "index", data: { requests } });
 });
 
 //render mapview page
-server.get("/admin/mapview", async (req, res) => {res.render("mapview",{ layout: "index"})})
+server.get("/admin/mapview", async (req, res) => {
+  res.render("mapview", { layout: "index" });
+});
 
 //render requestdetails page
 server.get("/admin/incoming/:id", async (req, res) => {
-  
-  res.render("requestdetails",{ layout: "index"})
-})
+  const requestId = req.params.id;
+  const requestDetails = await RequestRepository.findOne({ where: { id: Number(requestId) } });
+  const availableResponseTeam = await RTeamRepository.find({ where: { status: false } });
+
+  res.render("requestdetails", {
+    layout: "index",
+    data: { requestDetails, availableResponseTeam },
+  });
+});
+
+// this the route that handles the form sent from the assign rteam page
+server.post("/rteam/assign", async (req, res) => {
+  // we destructure each field of the form
+  const { rteam, requestId } = req.body;
+
+  // Get the response team we want to assign
+  const team = (await RTeamRepository.findOne({ where: { id: Number(rteam) } })) as RTeamEntity;
+
+  // assign the team to that specific request and also update the approved status to "TRUE"
+  await RequestRepository.update({ id: Number(requestId) }, { approved: true, rteam: team });
+
+  // update the response team status to "FALSE" indicating that they have been assigned
+  await RTeamRepository.update({ id: team.id }, { status: true });
+
+  // redirect to approved emergencies page
+  res.redirect("/admin/approved");
+});
 
 // This route handles a POST request to /request
 // The callback function creates a new request in the database
@@ -120,12 +159,12 @@ server.post("/request", async (req, res) => {
 //create new response team
 server.post("/response-team", async (req, res) => {
   console.log(req.body);
-  const { name } = req.body
-  const fstation = await FStationRepository.findOneBy({ id: 1 })
-  const entity = RTeamRepository.create({ name, station: fstation! })
-  await RTeamRepository.save(entity)
-  res.redirect("/admin/overview")
-})
+  const { name } = req.body;
+  const fstation = await FStationRepository.findOneBy({ id: 1 });
+  const entity = RTeamRepository.create({ name, station: fstation! });
+  await RTeamRepository.save(entity);
+  res.redirect("/admin/overview");
+});
 
 server.listen(8082, function () {
   console.log("server running");

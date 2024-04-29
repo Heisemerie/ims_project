@@ -1,5 +1,17 @@
-import { Entity, Column, JoinColumn, ManyToOne, UpdateDateColumn, DeleteDateColumn, CreateDateColumn, PrimaryGeneratedColumn, Generated } from "typeorm";
+import {
+  Entity,
+  Column,
+  JoinColumn,
+  ManyToOne,
+  UpdateDateColumn,
+  DeleteDateColumn,
+  CreateDateColumn,
+  PrimaryGeneratedColumn,
+  Generated,
+  OneToMany,
+} from "typeorm";
 import { FStationEntity } from "./fstation";
+import { RequestEntity } from "./request";
 
 @Entity({ name: "rteam" })
 export class RTeamEntity {
@@ -8,7 +20,7 @@ export class RTeamEntity {
 
   @Column({ type: "bool", default: false })
   status!: boolean;
-  
+
   @PrimaryGeneratedColumn()
   id!: number;
 
@@ -25,4 +37,7 @@ export class RTeamEntity {
   })
   @JoinColumn({ name: "firestat_id" })
   station!: FStationEntity;
+
+  @OneToMany(() => RequestEntity, (request) => request.rteam)
+  requests!: RequestEntity[];
 }

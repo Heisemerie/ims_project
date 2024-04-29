@@ -1,26 +1,26 @@
 <main id="inap">
-    <head>
-        <h1 class="logo">FireGuard</h1>
-    </head>
-    <div class="requestform">
-        <div>
-            <h2 class="details">Request Details</h2>
-            <ol class="details">
-                <li><span>ID: </span><span>1234</span></li>
-                <li><span>Longitude: </span><span>112324</span></li>
-                <li><span>Latitude: </span><span>125234</span></li>
-                <li><span>Time: </span><span>11:30</span></li>
-            </ol>
-        </div>
-        <form action="">
-            <label for="rteam" class="select">Assign Response Team:</label>
-            <select name="rteam" id="rteam" class="select">
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="fiat">Fiat</option>
-                <option value="audi">Audi</option>
-            </select>
-            <button class="select" type="submit">Submit</button>
-        </form>
+  <head>
+    <h1 class="logo">FireGuard</h1>
+  </head>
+  <div class="requestform">
+    <div>
+      <h2 class="details">Request Details</h2>
+      <ol class="details">
+        <li><span>ID: </span><span>{{data.requestDetails.id}}</span></li>
+        <li><span>Longitude: </span><span>{{data.requestDetails.longitude}}</span></li>
+        <li><span>Latitude: </span><span>{{data.requestDetails.latitude}}</span></li>
+        <li><span>Time: </span><span>1{{data.requestDetails.created_at}}</span></li>
+      </ol>
     </div>
+    <form action="/rteam/assign" method="post">
+      <label for="rteam" class="select">Assign Response Team:</label>
+      <select name="rteam" id="rteam" class="select">
+        {{#each data.availableResponseTeam}}
+          <option value="{{this.id}}">{{this.name}}</option>
+        {{/each}}
+      </select>
+      <input type="hidden" name="requestId" value="{{data.requestDetails.id}}" />
+      <button class="select" type="submit">Submit</button>
+    </form>
+  </div>
 </main>
