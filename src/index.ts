@@ -3,7 +3,7 @@ import { engine } from "express-handlebars";
 import "dotenv/config";
 import path from "path";
 import { ormConfig } from "./config/orm.config";
-import { DataSource } from "typeorm";
+import { DataSource, Not, IsNull } from "typeorm";
 import { RequestEntity } from "./entities/request";
 import { RTeamEntity } from "./entities/rteam";
 import { FStationEntity } from "./entities/fstation";
@@ -59,6 +59,11 @@ server.get("/admin/overview", async (req, res) => {
   const approvedRequestCount = await RequestRepository.count({ where: { approved: true } });
   const responseTeamCount = await RTeamRepository.count();
   const availableResponseTeamCount = await RTeamRepository.count({ where: { status: false } });
+  const request = await RequestRepository.find({ where: { time_arrived: Not(IsNull()) }});
+  let totalDifference = 0
+  request.forEach((request) => {
+    const diff = 0
+  })
   res.render("overview", {
     layout: "index",
     data: {
@@ -104,14 +109,11 @@ server.get("/admin/history", async (req, res) => {
     order: {
       created_at: "DESC",
     },
+    relations: { rteam: true}
   });
   res.render("history", { layout: "index", data: { requests } });
 });
 
-//render mapview page
-server.get("/admin/mapview", async (req, res) => {
-  res.render("mapview", { layout: "index" });
-});
 
 //render rteam page
 server.get("/rteam", async (req, res) => {

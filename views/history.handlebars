@@ -7,10 +7,9 @@
         <thead>
             <th>Request ID</th>
             <th>Time Created</th>
-            <th>Time Put Out</th>
+            <th>Put Out</th>
             <th>Longitude</th>
             <th>Latitude</th>
-            <th>Response Team</th>
         </thead>
         <tbody>
             {{#each data.requests}}
@@ -20,7 +19,6 @@
                 <td>{{this.put_out}}</td>
                 <td>{{this.longitude}}</td>
                 <td>{{this.latitude}}</td>
-                <td>Response Team X</td>
             </tr>
             {{/each}}
         </tbody>

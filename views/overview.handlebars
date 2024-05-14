@@ -21,19 +21,23 @@
         </div>
 
         <div class="cards">
-            <header>Average Response Time</header>
+            <header>Total Team Deployed</header>
             <div>
+                <h6>DEPLOYED</h6>
+                <h2>{{data.approvedRequestCount}}</h2>
+            </div>
+            {{!-- <div>
                 <h6>TODAY</h6>
                 <h2>5.1 mins</h2>
             </div>
             <div class="middle">
                 <h6>THIS WEEK</h6>
                 <h2>7.3 mins</h2>
-            </div>
-            <div>
+            </div> --}}
+            {{!-- <div>
                 <h6>ALL-TIME</h6>
                 <h2>8.5 mins</h2>
-            </div>
+            </div> --}}
         </div>
         <div class="cards">
             <header>Response Teams</header>
@@ -45,10 +49,7 @@
                 <h6>AVAILABLE</h6>
                 <h2>{{ data.availableResponseTeamCount }}</h2>
             </div>
-            <div>
-                <h6>DEPLOYED</h6>
-                <h2>{{data.approvedRequestCount}}</h2>
-            </div>
+            
         </div>
     </div>
 </main>
